@@ -8,10 +8,38 @@
   <link rel="stylesheet" href="CSS/index.css"> 
   <link rel="icon" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.zArF9Ts1D9taILeluJTP4wHaHa%26pid%3DApi&f=1&ipt=bce9605baedb64e52be23ec125c926c187de70809ae5236dff7124121fdc8b31&ipo=images"
   type="image"/> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">"
 
 </head>
 <body>
-  <script src="/constructor.js"></script>
+  <form id="formEle">
+
+    <label for="Fname">Full name</label>
+    <input type="text" id="Fname" name="fullName" value=""/><br><br>
+    
+    <label for="department">Choose Your Department</label>
+    <select id="department" name="department">
+      <option value="Administration">Administration</option>
+      <option value="Marketing">Marketing</option>
+      <option value="Development">Development</option>
+      <option value="Finance">Finance</option>
+    </select><br><br>
+  
+    <label for="level">Your Level</label>
+    <select id="level" name="level">
+      <option value="Junior">Junior</option>
+      <option value="Mid-Senior">Mid-Senior</option>
+      <option value="Senior">Senior</option> 
+    </select><br><br>
+    
+    <label for="img">Image URL:</label>
+    <input type="text" id="img" name="imageURL" value=""/><br><br>
+    
+    <input class="button" type="submit" value="Submit"/>
+  </form>
+
   <div class="header"> 
     <div class="left-section">
       <img class="logo" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.6CgfEHsftOWL1r_cGAo3pwHaHa%26pid%3DApi&f=1&ipt=bd0ad563cb7b016d2003ac57aefd7e2b3d532fca7b8ae19ae76e2823d099bf98&ipo=images"/>
@@ -25,6 +53,12 @@
   </div>
 
 
+
+<section id="secTag">
+
+</section>
+
+
   <div class="footer">
     <div class="right-sectionf" >© Copyright ASAC. All rights reserved.</div>
     <div class="social-Media-section"> Our Social Media Accounts 
@@ -36,6 +70,6 @@
     </div>
 
   </div>
-
+  <script src="constructor.js"></script>
 </body>
 </html>
