@@ -1,21 +1,24 @@
- .header{
+.header{
   height: 55px;
   position: fixed;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content:left;
+
   top: 0;
   right: 0;
   left: 0;
-  background-color: rgb(226, 224, 224);
+  background-color: #E3F4F4;
   color: black;
   width: 100%;
   margin-bottom: 100px;
-}  
-
+  box-shadow: #4e7272;
+  
+} 
 .middle-section{
   text-decoration: none;
-  margin-left: 380px;
+  margin-left: 500px;
   }
 
 
@@ -35,11 +38,6 @@
   cursor: pointer;
 }
 
-
-
-
-
-
 .logo{ 
 height: 50px;
 width: 50px;
@@ -49,27 +47,46 @@ border-radius: 25px;
 margin-bottom: 5px;
 } 
 
-
-
 p{
   display: inline-block;
 }
 
 
-.footer{
-  height: 27px;
-   display: flex;
-   flex-direction: row;
-   justify-content:center;
-   align-items: center;
-   background-color: lightgray;
-  margin-left: -50px;
-  margin-right: -50px;
-  margin-top: 560px;
-   padding-bottom: 25px;
-   padding-top: 25px;
- }
 
+#table{
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  border: 2px solid black;
+  width: 500px;
+  align-items: center;
+  flex: column;
+  margin-left: 400px;
+  }
+  th{
+    border: 2px solid black;;
+  }
+
+  td{
+    border: 1px solid black;;
+  }
+
+.footer{
+    
+  
+     background-color: #E3F4F4;
+     height: 100px;
+     position: fixed;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+   
+     padding-bottom: 10px;
+     bottom: 0;
+     right: 0;
+     left: 0;
+   }
  .right-sectionf{
   margin-left: 80px;
   margin-bottom: 10px;

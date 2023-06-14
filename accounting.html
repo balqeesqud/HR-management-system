@@ -5,12 +5,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HR Management System</title>
+  <link rel="stylesheet" href="CSS/index.css"> 
   <link rel="stylesheet" href="CSS/accounting.css"> 
   <link rel="icon" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.zArF9Ts1D9taILeluJTP4wHaHa%26pid%3DApi&f=1&ipt=bce9605baedb64e52be23ec125c926c187de70809ae5236dff7124121fdc8b31&ipo=images"
   type="image"/> 
 
 </head>
 <body>
+  <script src="constructor.js"></script>
+  
+</form>
+
+
   <div class="header"> 
     <div class="left-section">
       <img class="logo" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.6CgfEHsftOWL1r_cGAo3pwHaHa%26pid%3DApi&f=1&ipt=bd0ad563cb7b016d2003ac57aefd7e2b3d532fca7b8ae19ae76e2823d099bf98&ipo=images"/>
@@ -22,6 +28,28 @@
       <a href="./accounting.html" style="text-decoration: none;" target="_blank">Accounting</a>
     </div>
   </div>
+
+  <table id="table">
+  
+    <tr>
+      <th>Department</th>
+      <th>Number of employees</th>
+      <th>Avg Salary</th>
+      <th>Total Salary</th>
+    </tr>
+    <tbody id="table-body">
+      <tr>Marketing</tr>
+      <tr>Administration</tr>
+      <tr>Finance</tr>
+      <tr>Development</tr>
+    </tbody>
+      <tr>
+        <td id="totalNumber"></td>
+        <td id="totalSalary"></td>
+        <td id="avgSal"></td>
+      </tr>
+   
+  </table>
 
 
   <div class="footer">
@@ -35,6 +63,12 @@
     </div>
 
   </div>
+
+  
+  <script src="accounting.js"></script>
+  
+
+  
 
 </body>
 </html>

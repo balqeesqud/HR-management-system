@@ -1,12 +1,13 @@
 
 // First Step: Create Constructor Function 
 
+
 const Employees = [];
 let secEle= document.getElementById("secTag");  
 
-console.log(secEle); 
 
 let formEle= document.getElementById("formEle");
+let tableEle=document.getElementById("table");
 console.log(formEle); 
 
 function Employee(employeeID, fullName, department, level, imageURL) {
@@ -20,38 +21,32 @@ function Employee(employeeID, fullName, department, level, imageURL) {
 }
 
 
+
+
 // Render Method to render the data in the browser 
 Employee.prototype.employeeRender = function () {
-  // document.write(`<h5>Salary Is: ${this.salary}</h5>`);
-  // document.write(`<h4>Employee Name Is: ${this.fullName}</h4>`);
-
+  
    // Update the employeeRender function by Dom Manipulation 
+
+   let divEle=document.createElement("div");
+   divEle.id="divElement";
+   secEle.appendChild(divEle);
+
 
    let imgEle = document.createElement("img");
    imgEle.src = this.imageURL;
-   imgEle.style.backgroundColor="yellow";
-   imgEle.height= 300;
-
-  secEle.appendChild(imgEle);
-  
-  
-  
-   
+   divEle.appendChild(imgEle);
 
    let h3Ele = document.createElement("h3");
-    h3Ele.textContent = `Employee Name: ${this.fullName} - ID: ${this.employeeID}
-     Department:  ${this.department} -  Level:  ${this.level }
-     ${ this.salary}`
+   h3Ele.textContent = `Employee Name: ${this.fullName} - ID: ${this.employeeID}
+    Department:  ${this.department} -  Level:  ${this.level }
+    ${ this.salary}`
 
-    secEle.appendChild(h3Ele);  //
-   
+   divEle.appendChild(h3Ele);  
+
+  }
 
 
-   
-    
-   
-
-}
 
 
 function generateIDNumber(min,max){
@@ -61,8 +56,7 @@ function generateIDNumber(min,max){
 }
 
 
-
-// Second Step: Create New Objects (creating instances of the Employee constructor)
+// Second Step: Create New Objects (creating instances of the Employee constructor) // theses called hard copy data
 
 let employeeOne = new Employee(1000, "Ghazi Samer", "Administration", "Senior", "./assests/Ghazi.jpg");
 let employeeTwo = new Employee(1001, "Lana Ali", "Finance", "Senior", "assests/Lana.jpg");
@@ -93,12 +87,41 @@ function submitHandler(event) {
   console.log(id); 
   
 
-  let newEmployee= new Employee(id,fullName, department,level, img);
+  let newEmployee= new Employee(employeeID, fullName, department, level, imageURL);
   newEmployee.employeeRender(); 
+  saveData(Employees);
 }
-console.log(employeeOne);
-console.log(employeeTwo);
-console.log(Employees);
+
+console.log("before saving in the LS",Employees);
+
+// console.log(employeeOne);
+// console.log(employeeTwo);
+// console.log(Employees);
+
+
+function saveData(data) {
+  let stringArr = JSON.stringify(data); // array of stings 
+  localStorage.setItem('employees', stringArr);
+}
+
+function getData() {
+let retrievedArr= localStorage.getItem('employees'); // array of strings 
+console.log("data is coming from LS as strings", retrievedArr);
+
+let objArr=JSON.parse(retrievedArr); // array of objects
+console.log("data is coming from LS as objects",objArr);
+
+//(employeeID, fullName, department, level, imageURL) should be arranged as the constructor 
+
+if (objArr !=null){
+  for (let i=7; i<objArr.length; i++){ //iterating through objArr array that is coming from LS and starting from the new object index ; create new instance
+    new Employee(objArr[i].employeeID, objArr[i].fullName, objArr[i].department, objArr[i].level, objArr[i].imageURL);
+  } 
+}
+
+renderAll();
+
+}
 
 // Third Step: Create a Prototype Function For Calculating The Salary Based On Employee Level
 
@@ -130,13 +153,19 @@ Employee.prototype.generateRandomSalary = function () {
 };
 
 // Fourth Step: Create a Render Prototype Function To Render Each Employee Name With Their Salary  
+getData();
 
 
 
+
+function renderAll(){
 
 for (let i = 0; i < Employees.length; i++) {
   Employees[i].generateRandomSalary();
   Employees[i].employeeRender();
-
+  
+}
 
 }
+
+
