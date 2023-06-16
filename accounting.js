@@ -1,76 +1,65 @@
-function renderTableBody() {
-  // Get a reference to the table body element
-  let tableBody = document.getElementById("table-body");
 
-  // Clear the table body before rendering
-  tableBody.innerHTML = "";
+let tableEle= document.getElementById("table");
 
-  // Loop through each department
-  for (let i = 0; i < Employees.length; i++) {
-    let department = Employees[i].department;
-    let employeesInDepartment = Employees.filter(
-      (employee) => employee.department === department
-    );
 
-    // Calculate total salary and average salary for the department
-    let totalSalary = 0;
-    for (let j = 0; j < employeesInDepartment.length; j++) {
-      totalSalary += employeesInDepartment[j].salary;
+function getData() {
+  let retrievedData = localStorage.getItem('employees');
+  let employeesD = JSON.parse(retrievedData);
+
+  let departmentData = {};
+
+  employeesD.forEach(employee => {
+    let department = employee.department; // after dot as it named in local storage(employee.department)
+    console.log("Department:", department);
+
+    if (departmentData.hasOwnProperty(department)) {
+      departmentData[department].count++;
+      departmentData[department].totalSalary += employee.salary;
+    } else {
+      departmentData[department] = {
+        count: 1,
+        totalSalary: employee.salary
+      };
     }
-    let averageSalary = totalSalary / employeesInDepartment.length;
+    console.log("Employee:", employee);
+  });
+  console.log("Department Data:", departmentData);
 
-    //Create a new row element
-    let row = document.createElement("tr");
 
-    // Create and append table cells with department data
-    let departmentCell = document.createElement("td");
-    departmentCell.textContent = department;
-    row.appendChild(departmentCell);
-
-    let numOfEmployeesCell = document.createElement("td");
-    numOfEmployeesCell.textContent = employeesInDepartment.length;
-    row.appendChild(numOfEmployeesCell);
-
-    let averageSalaryCell = document.createElement("td");
-    averageSalaryCell.textContent = averageSalary;
-    row.appendChild(averageSalaryCell);
-
-    let totalSalaryCell = document.createElement("td");
-    totalSalaryCell.textContent = totalSalary;
-    row.appendChild(totalSalaryCell);
-
-    // Append the row to the table body
-    tableBody.appendChild(row);
+  // Populate department data
+  for (let department in departmentData) {
+    let countCell = document.getElementById(`${department}Cell`);
+    countCell.textContent = departmentData[department].count;
+    let salaryCell = document.getElementById(`${department}Salary`);
+    salaryCell.textContent = departmentData[department].totalSalary;
+    let averageCell = document.getElementById(`${department}Average`);
+    averageCell.textContent =
+      departmentData[department].totalSalary / departmentData[department].count;
   }
-}
 
-function renderTableFooter() {
-  // Get references to the footer cells
-  let totalNumberCell = document.getElementById("totalNumber");
+  // Calculate total employee count, total salary, and average salary
+  let totalEmployeesCell = document.getElementById("totalNumber");
+  totalEmployeesCell.textContent = employeesD.length;
+
   let totalSalaryCell = document.getElementById("totalSalary");
-  let avgSalCell = document.getElementById("avgSal");
+  let totalSalary = employeesD.reduce((total, employee) => 
+  total + employee.salary, 0);
 
-  // Calculate total number of employees
-  let totalEmployees = Employees.length;
+  totalSalaryCell.textContent = totalSalary;
 
-  // Calculate total salary and average salary for all departments
-  let totalSalary = 0;
-  for (let i = 0; i < Employees.length; i++) {
-    totalSalary += Employees[i].salary;
-  }
-  let averageSalary = totalSalary / Employees.length;
-
-  // Set the text content of the footer cells
-  totalNumberCell.textContent = "Total number of employees: " + totalEmployees;
-  totalSalaryCell.textContent = "Total salary for all departments: " + totalSalary;
-  avgSalCell.textContent = "Average salary for all departments: " + averageSalary;
+  let averageSalaryCell = document.getElementById("avgSal");
+  let averageSalary = totalSalary / employeesD.length;
+  averageSalaryCell.textContent = averageSalary;
 }
 
-// Call the functions to generate the table body and footer
-renderTableBody();
-renderTableFooter();
+getData();
 
 
-///////////////////////////////////////
-// 
+
+
+
+
+
+
+
 

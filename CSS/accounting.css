@@ -64,11 +64,13 @@ p{
   margin-left: 400px;
   }
   th{
-    border: 2px solid black;;
+    border: 2px solid black;
+    text-align: center;
   }
 
   td{
-    border: 1px solid black;;
+    border: 1px solid black;
+    text-align: center;
   }
 
 .footer{
