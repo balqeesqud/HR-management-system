@@ -77,7 +77,7 @@ Employee.prototype.generateRandomSalary = function () {
   var randomSalary = Math.floor(Math.random() * (max - min)) + min;
   var taxPercent = 7.5;
   var taxAmount = (randomSalary * taxPercent) / 100;
-  this.salary = randomSalary - taxAmount;
+  this.salary = (randomSalary - taxAmount).toFixed(2);
  // Math.floor removes fractions and round the number to the lowest value. 
 };
 
