@@ -45,14 +45,14 @@ function getData() {
   let totalSalary = employeesD.reduce((total, employee) => 
   total + employee.salary, 0);
 
-  totalSalary = Math.round(totalSalary * 100) / 100;
-  totalSalaryCell.textContent = totalSalary.toFixed(1);
+  
+  totalSalaryCell.textContent = totalSalary.toFixed(2);
 
   let averageSalaryCell = document.getElementById("avgSal");
   let averageSalary = totalSalary / employeesD.length;
 
-  averageSalary = Math.round(averageSalary * 100) / 100;
-  averageSalaryCell.textContent = averageSalary.toFixed(1);
+  
+  averageSalaryCell.textContent = averageSalary.toFixed(2);
 }
 
 getData();
