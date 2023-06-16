@@ -6,35 +6,35 @@ function getData() {
   let retrievedData = localStorage.getItem('employees');
   let employeesD = JSON.parse(retrievedData);
 
-  let departmentData = {};
+  let departmentInfo = {};
 
   employeesD.forEach(employee => {
     let department = employee.department; // after dot as it named in local storage(employee.department)
     console.log("Department:", department);
 
-    if (departmentData.hasOwnProperty(department)) {
-      departmentData[department].count++;
-      departmentData[department].totalSalary += employee.salary;
+    if (departmentInfo.hasOwnProperty(department)) {
+      departmentInfo[department].count++;
+      departmentInfo[department].totalSalary += employee.salary;
     } else {
-      departmentData[department] = {
+      departmentInfo[department] = {
         count: 1,
         totalSalary: employee.salary
       };
     }
     console.log("Employee:", employee);
   });
-  console.log("Department Data:", departmentData);
+  console.log("Department Data:", departmentInfo);
 
 
   // Populate department data
-  for (let department in departmentData) {
-    let countCell = document.getElementById(`${department}Cell`);
-    countCell.textContent = departmentData[department].count;
+  for (let department in departmentInfo) {
+    let countCell = document.getElementById(`${department}Employee`);
+    countCell.textContent = departmentInfo[department].count;
     let salaryCell = document.getElementById(`${department}Salary`);
-    salaryCell.textContent = departmentData[department].totalSalary;
+    salaryCell.textContent = departmentInfo[department].totalSalary;
     let averageCell = document.getElementById(`${department}Average`);
     averageCell.textContent =
-      departmentData[department].totalSalary / departmentData[department].count;
+      departmentInfo[department].totalSalary / departmentInfo[department].count;
   }
 
   // Calculate total employee count, total salary, and average salary
