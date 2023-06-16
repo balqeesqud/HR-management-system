@@ -34,7 +34,7 @@ function getData() {
     salaryCell.textContent = departmentInfo[department].totalSalary;
     let averageCell = document.getElementById(`${department}Average`);
     averageCell.textContent =
-      departmentInfo[department].totalSalary / departmentInfo[department].count;
+      (departmentInfo[department].totalSalary / departmentInfo[department].count).toFixed(2);
   }
 
   // Calculate total employee count, total salary, and average salary
