@@ -7,8 +7,7 @@ let secEle= document.getElementById("secTag");
 
 
 let formEle= document.getElementById("formEle");
-let tableEle=document.getElementById("table");
-console.log(formEle); 
+// let tableEle=document.getElementById("table");
 
 function Employee(employeeID, fullName, department, level, imageURL) {
   this.employeeID = employeeID;
@@ -21,7 +20,7 @@ function Employee(employeeID, fullName, department, level, imageURL) {
 }
 
 
-
+// Fourth Step: Create a Render Prototype Function To Render Each Employee Name With Their Salary 
 
 // Render Method to render the data in the browser 
 Employee.prototype.employeeRender = function () {
@@ -46,14 +45,41 @@ Employee.prototype.employeeRender = function () {
 
   }
 
-
-
-
 function generateIDNumber(min,max){
   let newId= Math.floor(Math.random() * (max - min + 1) + min)
   return newId;
  
 }
+
+
+// Third Step: Create a Prototype Function For Calculating The Salary Based On Employee Level
+
+Employee.prototype.generateRandomSalary = function () {
+  let min, max;
+
+  switch (this.level) {
+    case "Junior":
+      min = 500;
+      max = 1000;
+      break;
+
+    case "Mid-Senior":
+      min = 1000;
+      max = 1500;
+      break;
+
+    case "Senior":
+      min = 1500;
+      max = 2000;
+      break;
+  }
+
+  var randomSalary = Math.floor(Math.random() * (max - min)) + min;
+  var taxPercent = 7.5;
+  var taxAmount = (randomSalary * taxPercent) / 100;
+  this.salary = randomSalary - taxAmount;
+ // Math.floor removes fractions and round the number to the lowest value. 
+};
 
 
 // Second Step: Create New Objects (creating instances of the Employee constructor) // theses called hard copy data
@@ -86,9 +112,10 @@ function submitHandler(event) {
   console.log(img);
   console.log(id); 
   
-
-  let newEmployee= new Employee(employeeID, fullName, department, level, imageURL);
+ // Employee(employeeID, fullName, department, level, imageURL)
+  let newEmployee= new Employee(id, fullName, department, level, img);
   newEmployee.employeeRender(); 
+  console.log("array after submit event", Employees );
   saveData(Employees);
 }
 
@@ -102,6 +129,7 @@ console.log("before saving in the LS",Employees);
 function saveData(data) {
   let stringArr = JSON.stringify(data); // array of stings 
   localStorage.setItem('employees', stringArr);
+
 }
 
 function getData() {
@@ -119,42 +147,10 @@ if (objArr !=null){
   } 
 }
 
-renderAll();
+  renderAll();
 
 }
-
-// Third Step: Create a Prototype Function For Calculating The Salary Based On Employee Level
-
-Employee.prototype.generateRandomSalary = function () {
-  let min, max;
-
-  switch (this.level) {
-    case "Junior":
-      min = 500;
-      max = 1000;
-      break;
-
-    case "Mid-Senior":
-      min = 1000;
-      max = 1500;
-      break;
-
-    case "Senior":
-      min = 1500;
-      max = 2000;
-      break;
-  }
-
-  var randomSalary = Math.floor(Math.random() * (max - min)) + min;
-  var taxPercent = 7.5;
-  var taxAmount = (randomSalary * taxPercent) / 100;
-  this.salary = randomSalary - taxAmount;
- // Math.floor removes fractions and round the number to the lowest value. 
-};
-
-// Fourth Step: Create a Render Prototype Function To Render Each Employee Name With Their Salary  
 getData();
-
 
 
 
