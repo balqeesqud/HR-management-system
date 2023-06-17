@@ -1,6 +1,4 @@
-
-let tableEle= document.getElementById("table");
-
+let tableEle = document.getElementById('table');
 
 function getData() {
   let retrievedData = localStorage.getItem('employees');
@@ -8,9 +6,9 @@ function getData() {
 
   let departmentInfo = {};
 
-  employeesD.forEach(employee => {
-    let department = employee.department; // after dot as it named in local storage(employee.department)
-    console.log("Department:", department);
+  employeesD.forEach((employee) => {
+    let department = employee.department;
+    console.log('Department:', department);
 
     if (departmentInfo.hasOwnProperty(department)) {
       departmentInfo[department].count++;
@@ -18,51 +16,38 @@ function getData() {
     } else {
       departmentInfo[department] = {
         count: 1,
-        totalSalary: employee.salary
+        totalSalary: employee.salary,
       };
     }
-    console.log("Employee:", employee);
+    console.log('Employee:', employee);
   });
-  console.log("Department Data:", departmentInfo);
-
+  console.log('Department Data:', departmentInfo);
 
   // Populate department data
   for (let department in departmentInfo) {
     let countCell = document.getElementById(`${department}Employee`);
     countCell.textContent = departmentInfo[department].count;
     let salaryCell = document.getElementById(`${department}Salary`);
-    salaryCell.textContent = departmentInfo[department].totalSalary;
+    salaryCell.textContent = departmentInfo[department].totalSalary.toFixed(2);
     let averageCell = document.getElementById(`${department}Average`);
-    averageCell.textContent =
-      (departmentInfo[department].totalSalary / departmentInfo[department].count).toFixed(2);
+    averageCell.textContent = (
+      departmentInfo[department].totalSalary / departmentInfo[department].count
+    ).toFixed(2);
   }
 
   // Calculate total employee count, total salary, and average salary
-  let totalEmployeesCell = document.getElementById("totalNumber");
+  let totalEmployeesCell = document.getElementById('totalNumber');
   totalEmployeesCell.textContent = employeesD.length;
 
-  let totalSalaryCell = document.getElementById("totalSalary");
-  let totalSalary = employeesD.reduce((total, employee) => 
-  total + employee.salary, 0);
+  let totalSalaryCell = document.getElementById('totalSalary');
+  let totalSalary = employeesD
+    .reduce((total, employee) => total + employee.salary, 0)
+    .toFixed(2);
+  totalSalaryCell.textContent = totalSalary;
 
-  
-  totalSalaryCell.textContent = totalSalary.toFixed(2);
-
-  let averageSalaryCell = document.getElementById("avgSal");
-  let averageSalary = totalSalary / employeesD.length;
-
-  
-  averageSalaryCell.textContent = averageSalary.toFixed(2);
+  let averageSalaryCell = document.getElementById('avgSal');
+  let averageSalary = (totalSalary / employeesD.length).toFixed(2);
+  averageSalaryCell.textContent = averageSalary;
 }
 
 getData();
-
-
-
-
-
-
-
-
-
-
