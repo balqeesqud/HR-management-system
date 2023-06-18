@@ -1,6 +1,6 @@
 // First Step: Create Constructor Function
 
-const Employees = [];
+let Employees = [];
 let secEle = document.getElementById('secTag');
 
 let formEle = document.getElementById('formEle');
@@ -81,6 +81,7 @@ let employeeOne = new Employee(
   'Senior',
   './assests/Ghazi.jpg'
 );
+employeeOne.generateRandomSalary(); // To calculate salary for each employee and will keep changing
 let employeeTwo = new Employee(
   1001,
   'Lana Ali',
@@ -88,6 +89,7 @@ let employeeTwo = new Employee(
   'Senior',
   'assests/Lana.jpg'
 );
+employeeTwo.generateRandomSalary();
 let employeeThree = new Employee(
   1002,
   'Tamara Ayoub',
@@ -95,6 +97,8 @@ let employeeThree = new Employee(
   'Senior',
   'assests/Tamara.jpg'
 );
+employeeThree.generateRandomSalary();
+
 let employeeFour = new Employee(
   1003,
   'Safi Walid',
@@ -102,6 +106,8 @@ let employeeFour = new Employee(
   'Mid-Senior',
   'assests/Safi.jpg'
 );
+employeeFour.generateRandomSalary();
+
 let employeeFive = new Employee(
   1004,
   'Omar Zaid',
@@ -109,6 +115,8 @@ let employeeFive = new Employee(
   'Senior',
   'assests/Omar.jpg'
 );
+employeeFive.generateRandomSalary();
+
 let employeeSix = new Employee(
   1005,
   'Rana Saleh',
@@ -116,6 +124,7 @@ let employeeSix = new Employee(
   'Junior',
   'assests/Rana.jpg'
 );
+employeeSix.generateRandomSalary();
 let employeeSeven = new Employee(
   1006,
   'Hadi Ahmad',
@@ -123,6 +132,7 @@ let employeeSeven = new Employee(
   'Mid-Senior',
   'assests/Hadi.jpg'
 );
+employeeSeven.generateRandomSalary();
 
 formEle.addEventListener('submit', submitHandler);
 
@@ -143,6 +153,7 @@ function submitHandler(event) {
 
   // Employee(employeeID, fullName, department, level, imageURL)
   let newEmployee = new Employee(id, fullName, department, level, img);
+  newEmployee.generateRandomSalary(); // to generate a random salary for the new employee
   newEmployee.employeeRender();
   console.log('array after submit event', Employees);
   saveData(Employees);
@@ -170,14 +181,15 @@ function getData() {
 
   if (objArr != null) {
     for (let i = 7; i < objArr.length; i++) {
-      //iterating through objArr array that is coming from LS and starting from the new object index ; create new instance
-      new Employee(
+      //iterating through objArr array that is coming from LS and starting from the new object index ; create new instance // if we comment the instances we need to set i=0
+      let newStaff = new Employee(
         objArr[i].employeeID,
         objArr[i].fullName,
         objArr[i].department,
         objArr[i].level,
         objArr[i].imageURL
       );
+      newStaff.salary = objArr[i].salary; // for new input to take the salary from the LS and not changing it
     }
   }
 
@@ -187,7 +199,7 @@ getData();
 
 function renderAll() {
   for (let i = 0; i < Employees.length; i++) {
-    Employees[i].generateRandomSalary();
+    // Employees[i].generateRandomSalary();
     Employees[i].employeeRender();
   }
 }
